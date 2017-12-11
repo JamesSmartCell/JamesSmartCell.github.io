@@ -2,7 +2,6 @@
 var bitcore = require('bitcore-lib');
 var Mnemonic = require('bitcore-mnemonic');
 var explorers = require('bitcore-explorers');
-var Message = require('bitcore-message');
 var insight = new explorers.Insight();
 //var Buffer = bitcore.Buffer;
 var Buffer = bitcore.deps.Buffer;
@@ -22,7 +21,7 @@ var HttpClient = function ()
                 transactionFail();
         }
 
-        var fullURL = 'https://api.biteasy.com/blockchain/v1/transactions/' + txid;
+        var fullURL = 'https://api.biteasy.com/v2/btc/mainnet/transactions/' + txid;
 
         anHttpRequest.open("GET", fullURL, true);
         anHttpRequest.send(null);
@@ -40,8 +39,6 @@ var minerFee = 6000;
 var nominalTransactionAmount = 6000;
 var seed;
 var fundingUTXO;
-
-var privateKeyUse;
 
 function getPrivateKey(modulus)
 {
@@ -98,9 +95,8 @@ function loadStartData()
     var secret = document.getElementById('secret');
     var secretStr = secret.value;
     var balance = document.getElementById('balance');
-    var qr = document.getElementById('qrcodeTable');
+    //var qr = document.getElementById('qrcodeTable');
     var storage = document.getElementById('storage');
-    var generator = document.getElementById('generate'); 
 
     var outputTxt = document.getElementById('output');
     var locationTxt = document.getElementById('location');
@@ -112,44 +108,8 @@ function loadStartData()
 
     hidePasswordBox();
 
-    //secret is WIF
-    privateKeyUse = bitcore.PrivateKey.fromWIF(secretStr);
-    //var keyPair = bitcore.ECPair.fromWIF(secretStr);
-    var message = 'This is an example of a signed message.';
-    //var signature = bitcoin.message.sign(keyPair, message);
-    var signature = Message(message).sign(privateKeyUse);
-
-    var msg = new Message(message);
-    msg.sign(privateKeyUse);
-
-    //balance.innerHTML = signature.toString('base64');
-
-    var address = privateKeyUse.toAddress();
-
-    var verified = Message(message).verify(address, signature);
-
-    storage.style.display = '';
-    storage.innerHTML = '';
-
-    var memorable = document.getElementById('entermemorable');
-    memorable.style.display = 'none';
-    memorable.innerHTML = '';
-    generator.style.display = 'none';
-    secret.innerHTML = '';
-    secret.style.display = 'none';
-    secret.value = '';
-
-    /*if (verified == true) {
-        storage.innerHTML = 'Verified';
-    }
-    else {
-        storage.innerHTML = 'Fake';
-    }*/
-
-;
-
     //tokenise
-    /*var wordList2 = tokenise(secretStr);
+    var wordList2 = tokenise("how about this for a private key");
 
     if (wordList2.length < 5)
     {
@@ -164,7 +124,7 @@ function loadStartData()
 
     aClient = new HttpClient();
 
-    qr.innerHTML = '';
+    //qr.innerHTML = '';
 
     var width = document.getElementById("maincontainer").offsetWidth;
 
@@ -181,87 +141,17 @@ function loadStartData()
 
     storage.style.display = '';
 
-    jQuery('#qrcodeTable').qrcode({
+    /*jQuery('#qrcodeTable').qrcode({
         text: 'bitcoin:' + address,
         width		: qrWidth,
 	    height		: qrHeight,
-    });
+    });*/
 
     var numAddr = document.getElementById('bitcoinAddr');
     var numAddrStr = getBitcoinAddress(address.toString());
     numAddr.innerHTML = numAddrStr;
 
-    displayRemainingBitcoins();*/
-
-    updateQR();
-}
-
-function updateQR() 
-{
-    //update the QR code
-    //current time
-    var qr = document.getElementById('qrcodeTable');
-    qr.innerHTML = '';
-
-    var width = document.getElementById("maincontainer").offsetWidth;
-
-    var qrWidth = 256;
-    var qrHeight = 256;
-
-    if (width < 750)
-    {
-        qrWidth = 150;
-        qrHeight = 150;
-    }
-
-    var d = new Date();
-    var n = d.getTime();
-    n = Math.floor(n / (1000 * 60)); //convert to mins
-
-    //var minutes = d.getMinutes();
-    //minutes = Math.floor(minutes / 10);
-    //minutes = minutes * 10;
-
-    //now convert to closest 10 mins
-    //var now_utc = new Date(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(), now.getUTCHours(), now.getUTCMinutes(), now.getUTCSeconds());
-
-    var balance = document.getElementById('balance');
-    var timeStr = n.toString();
-
-    var signature = Message(timeStr).sign(privateKeyUse);
-
-    balance.innerHTML = '';// signature.toString('base64');
-
-    var address = privateKeyUse.toAddress();
-
-    var ticketID = 1024;
-
-    var QRString = ticketID.toString() + signature.toString('base64');
-
-    var QRdata = address.toString() + ',' + signature;
-
-    var humanTimeStr  = d.getHours() + ":" + d.getMinutes();
-
-    balance.innerHTML = n.toString();
-
-    var qrcode = new QRCode("qrcodeTable", {
-    text: QRdata,
-    width: 350,
-    height: 350,
-    colorDark : "#000000",
-    colorLight : "#ffffff",
-    correctLevel : QRCode.CorrectLevel.L
-    });
-
-    //now do QR
-    /*.jQuery('#qrcodeTable').qrcode({
-        text        : QRdata,
-        width		: qrWidth,
-	    height		: qrHeight,
-	    correctLevel: QRCode.CorrectLevel.H,
-    });*/
-
-    setTimeout(function () { updateQR(); }, 30000);
+    displayRemainingBitcoins();
 }
 
 function displayRemainingBitcoins()
@@ -295,6 +185,9 @@ function displayRemainingBitcoins()
             bitcoinAmount = satoshis / 100000.0;
             balance.innerHTML = 'Available credits = ' + bitcoinAmount + 'mBTC' + ' [' + ctx + ' units of storage]';
             newPasswordBtn.style.display = '';
+
+            var scode = document.getElementById('secretCode');
+            scode.innerHTML = privateKey0.toString();
 
             var memorable = document.getElementById('entermemorable');
             memorable.style.display = 'none';

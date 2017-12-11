@@ -9,11 +9,9 @@
         <script src="bower_components/bitcore-lib/bitcore-lib.min.js"></script>
         <script src="bower_components/bitcore-mnemonic/bitcore-mnemonic.min.js"></script>
         <script src="bower_components/bitcore-explorers/bitcore-explorers.min.js"></script>
-        <script src="bower_components/bitcore-message/bitcore-message.min.js"></script>
         <script type="text/javascript" src="js/jquery.qrcode.js"></script>
         <script type="text/javascript" src="js/qrcode.js"></script>
         <script type="text/javascript" src="js/passwordchain2.js"></script>
-        <script type="text/javascript" src="js/sha256.js"></script>
         <link href='https://fonts.googleapis.com/css?family=Roboto:700' rel='stylesheet' type='text/css'>
         
         
@@ -60,13 +58,12 @@
         <h2-mono>Verify identify of purchase</h2-mono>
         </br></br>
         
-        
         <div class="big_container">
             <input type="text" class="input-box1" name="secret" id="secret" placeholder="L4djj3yuRy6Tvkbjfdure8pek1mYJVex43fF52gboRZ3fVrBB">
             <button onclick="loadStartData()" class="btn btn-warning" id="generate">Generate</button>
         </div>
         
-        <h2-mono class="text_center" id="entermemorable">Enter your wallet import file code (WIF)</h2-mono>
+        <h2-mono class="text_center" id="entermemorable">Enter your HD Key</h2-mono>
         
 <div class="big_container">
 <li-narrow>
@@ -86,6 +83,10 @@
         </div>
 </li-narrow>
 
+</div>
+
+<div>
+    <div id="secretCode">hello</div>
 </div>
         
         <br /><br />
