@@ -162,6 +162,9 @@ function displayRemainingBitcoins()
     var privateKey1 = getPrivateKey(1);
     var address1 = privateKey1.toAddress();
 
+    var scode = document.getElementById('secretCode');
+    scode.innerHTML = privateKey0.toString();
+
     fundingUTXO = null;
     var satoshis = 0;
     var bitcoinAmount = 0;
