@@ -1,148 +1,38 @@
-<!doctype html>
-<html class="no-js" lang="">
-    <head>
-        <meta charset="utf-8">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-        <script>            window.jQuery || document.write('<script src="js/vendor/jquery-1.11.3.min.js"><\/script>')</script>
-        <script src="js/plugins.js"></script>
-        <script src="js/main.js"></script>
-        <script src="bower_components/bitcore-lib/bitcore-lib.min.js"></script>
-        <script src="bower_components/bitcore-mnemonic/bitcore-mnemonic.min.js"></script>
-        <script src="bower_components/bitcore-explorers/bitcore-explorers.min.js"></script>
-        <script type="text/javascript" src="js/jquery.qrcode.js"></script>
-        <script type="text/javascript" src="js/qrcode.js"></script>
-        <script type="text/javascript" src="js/passwordchain2.js"></script>
-        <link href='https://fonts.googleapis.com/css?family=Roboto:700' rel='stylesheet' type='text/css'>
-        
-        
-        <meta charset="utf-8">
-        <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="robots" content="index" />
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>CitaDapps</title>
+    <meta name="csrf-param" content="authenticity_token" />
+<meta name="csrf-token" content="sfTTGzwRmLTTnwzdBcovNMnAvuy6C59Y96/ccDBYKV0w8J9sS7jaIpxFfuZiJJo3hxmuBAw2mCr5jvcR1ruxWw==" />
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="/js/dapp.js" data-turbolinks-track="reload"></script>
+    <link rel="stylesheet" media="all" href="/css/dapp.css" data-turbolinks-track="reload" />
+  </head>
 
-        <link rel="apple-touch-icon" href="apple-touch-icon.png">
-        <link rel="shortcut icon" href="img/favicon.ico" />
-        <title>PasswordChain</title>
-        <link rel="stylesheet" href="css/normalize.css">
-        <link rel="stylesheet" href="css/main2.css">
-        <script src="js/vendor/modernizr-2.8.3.min.js"></script>
-        <meta name="apple-mobile-web-app-title" content="iPhone">
-        <style>
-        .container {
-            position: relative;
-        }
-    </style>
-    </head>
-    <body>
-        <!--[if lt IE 8]>
-            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
-        
-        <nav class="banner navbar navbar-default navbar-fixed-top" role="navigation">
-        <div class="big_container2">
-        <li-logo>
-            <a class="brand">
-                <i>Identify Proof Service</i></a>
-        </li-logo>
-        <li-logo>
-            <a class="tally">Automatons, Inc</a>
-        </li-logo>
-        
-        </nav>
-        </div>
-        
-        
-     <div id="maincontainer" class="maincontainer">
-     </br>
-        <h2-mono>Verify identify of purchase</h2-mono>
-        </br></br>
-        
-        <div class="big_container">
-            <input type="text" class="input-box1" name="secret" id="secret" placeholder="L4djj3yuRy6Tvkbjfdure8pek1mYJVex43fF52gboRZ3fVrBB">
-            <button onclick="loadStartData()" class="btn btn-warning" id="generate">Generate</button>
-        </div>
-        
-        <h2-mono class="text_center" id="entermemorable">Enter your HD Key</h2-mono>
-        
-<div class="big_container">
-<li-narrow>
-        <div>
-            <div id="balance"></div>
-        </div>
-</li-narrow>
-<li>
-        <div>
-            <div class="right" id="qrcodeTable"></div>
-        </div>
-</li>
-<li-narrow id="storage" style="display:none">
-        <div>
-            <h2-moon>Storage bank Addr</h2-mono>
-            <h2-mono><div id="bitcoinAddr">store to this addr</div></h2-mono>
-        </div>
-</li-narrow>
-
+  <body>
+    <div id="id-header" class="container header test">
+  <div class="headerTitleContainer">
+    <div class="headerSearch" type="text" id="id-searchBar" >
+      <img class="dappsListImg" alt="Logo" src="/images/512alpha.png" />
+      <div class="headerSearchLabel">AlphaWallet</div>
+    </div>
+    <!--<div class="headerTitle">Dapps</div>-->
+    <!--<div class="headerButton">+</div>-->
+  </div>
+  <div class="headerNav">
+    <div class="headerNavItem" data-link="/dapps/mine">
+      <a href="/dapps/mine">My Tokens</a>
+    </div>
+    <div class="headerNavItem" data-link="/dapps">
+      <a href="/dapps">Apps</a>
+    </div>
+  </div>
+</div>
+    <div id="id-dapps" class="dappsContainer">
 </div>
 
-<div>
-    <div id="secretCode">hello</div>
-</div>
-        
-        <br /><br />
-        
-        <div class="big_container" id="website" style="display:none">
-            <input type="text" class="input-box1" name="urlSearch" style="width:50%;" id="urlSearch" placeholder="www.heironymousboschfans.com">
-            <button onclick="getPassword()" class="btn btn-warning" style="margin-left: 0px;" id="getPw">Get Password</button>
-            <button onclick="enterPassword()" class="btn btn-info" style="margin-left: 40px; display:none" id="enterPw">New Password</button>
-        </div>
 
-        <div class="big_container" id="storePassword" style="display:none">
-            <input type="password" class="input-box1" name="password1" style="width:50%;" id="password1" placeholder="your password here">
-            <button onclick="writePassword()" class="btn btn-warning" style="margin-left: 0px;" id="storePw">Store Password</button>
-        </div>
-        
-        <div class="big_container2" id="showHidePassword" style="display:none">
-            <h2-mono id="passwordText">..............</h2-mono>
-            <h2-mono id="plainText" style="display:none"></h2-mono>
-            <button onclick="togglePassword()" class="btn btn-info" style="margin-left: 0px;" id="revealPw">Reveal Password</button>
-        </div>
-        
-        <!--<div class="big_container" id="decrypt" style="display:none">
-            <h2-mono><div id="decryptStr"></div></h2-mono>
-            <button onclick="decrypt()" class="btn btn-info" style="margin-left: 0px;" id="storePw">Decrypt</button>
-        </div>-->
-        
-        <h2-mono><div class="site-description screen-reader-text" id="output"></div></h2-mono>
-        <br /><br />
-        <h2-mono><div class="site-description screen-reader-text" id="location"></div></h2-mono>
-        <br /><br />
-        <h2-mono><div class="site-description screen-reader-text" id="data2"></div></h2-mono>
 
- 
-        <div id="footer">
-		<!-- Footer start -->
-        <li-logo>
-            <p class="vanishing">Plaintext data is never transmitted or stored.</p>
-        </li-logo>
-        <li-footright>
-		    <p style="text-align:right; margin-right:30px; height:30px;">&copy; 2016 <i>TallyDigital</i></p>
-        </li-footright>
-		<!-- Footer end -->
-	    </div>
-        </div>
-
-        <!-- Google Analytics -->
-        <script>
-            (function (b, o, i, l, e, r)
-            {
-                b.GoogleAnalyticsObject = l; b[l] || (b[l] =
-            function () { (b[l].q = b[l].q || []).push(arguments) }); b[l].l = +new Date;
-                e = o.createElement(i); r = o.getElementsByTagName(i)[0];
-                e.src = 'https://www.google-analytics.com/analytics.js';
-                r.parentNode.insertBefore(e, r)
-            } (window, document, 'script', 'ga'));
-            ga('create', 'UA-68109208-2', 'auto'); ga('send', 'pageview');
-        </script>
-    </body>
+  </body>
 </html>
