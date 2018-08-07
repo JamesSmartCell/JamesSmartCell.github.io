@@ -35,10 +35,10 @@
     <button type="button" onclick="loadDoc()">Request Address</button> 
     <p id="demo"></p>
     <script>
-        // function callback(error, result)
-        // {
+        function callback(error, result)
+        {
 
-        // }
+        }
 
         // web3.eth.getBalance.request('0x0000000000000000000000000000000000000000', 'latest', callback);
         // xhttp.open("GET", "web3.eth.getBalance('0x0000000000000000000000000000000000000000')", true);
@@ -54,7 +54,8 @@
                 document.getElementById("demo").innerHTML = this.responseText;
             }
         };
-        xhttp.open("GET", "demo_get.asp", true);
+        web3.eth.getBalance.request('0x0000000000000000000000000000000000000000', 'latest', callback);
+        xhttp.open("GET", "web3.eth.getBalance('0x0000000000000000000000000000000000000000')", true);
         xhttp.send();
     }
     </script>
