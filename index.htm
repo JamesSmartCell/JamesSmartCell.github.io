@@ -32,8 +32,15 @@
     <div id="id-dapps" class="dappsContainer">
     <!-- Attempt to list all tokens -->
     Hello you people.
-    <script language="javascript">
-            web3.eth.getBalance()
+    <script>
+        function callback(error, result)
+        {
+            
+        }
+
+        web3.eth.getBalance.request('0x0000000000000000000000000000000000000000', 'latest', callback);
+        xhttp.open("GET", "web3.eth.getBalance('0x0000000000000000000000000000000000000000')", true);
+        xhttp.send();
     </script>
 </div>
   </body>
