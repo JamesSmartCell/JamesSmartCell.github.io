@@ -33,10 +33,15 @@
     <div id="id-dapps" class="dappsContainer">
     <!-- Attempt to list all tokens -->
     Hello you people.
-  <div id="video-container">
-    <video id="camera-stream" width="500" autoplay></video>
-  </div>
-  <script src="/js/script.js"></script>
+    <div id="content">
+            <p>Capture Image: <input type="file" accept="image/*" id="capture" capture="camera"> 
+        
+        <p>Capture Audio: <input type="file" accept="audio/*" id="capture" capture="microphone"> 
+        
+        <p>Capture Video: <input type="file" accept="video/*" id="capture" capture="camcorder"> 
+        
+            </div>
+
     <button type="button" onclick="loadDoc()">Request Address</button> 
     <p id="demo"></p>
     <script>
