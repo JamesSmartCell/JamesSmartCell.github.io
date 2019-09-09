@@ -40,6 +40,11 @@
     </style>
 </head>
 <body>
+<script charset="utf-8"
+        src="https://cdn.ethers.io/scripts/ethers-v4.min.js"
+        type="text/javascript">
+</script>
+
 <div class="jumbotron">
     <h1>AlphaWallet Signing DAPP</h1>
 </div>
@@ -53,8 +58,8 @@
         <textarea rows="5" cols="60" id="sig" name="sig" ></textarea>
         </label>
     </div>
+    <p id="testLayer"><button onclick="testButton()" id="testButton" class="stormbut">Test sendUncheckedTransaction</button></p>
     <p id="sendLayer"><button onclick="sendButton()" id="sendButton" class="stormbut">Send TX</button></p>
-    <br/>
     <p id="signLayer"><button onclick="signButton()" id="signButton" class="stormbut">Sign</button></p>
     <p id="actionLayer"><button onclick="actionButton()" id="actionButton" class="stormbut">Action</button></p>
 
@@ -99,6 +104,11 @@
                 sig.value = data;
                 link.style.visibility = "visible" ;
             });
+    }
+
+    function testButton()
+    {
+      
     }
 
     function actionButton()
