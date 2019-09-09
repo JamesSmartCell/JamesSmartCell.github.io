@@ -60,7 +60,6 @@
     </div>
     <p id="testLayer"><button onclick="testButton()" id="testButton" class="stormbut">Test sendUncheckedTransaction</button></p>
     <p id="sendLayer"><button onclick="sendButton()" id="sendButton" class="stormbut">Send TX</button></p>
-    <p id="sendLayer2"><button onclick="sendButton()" id="sendButton2" class="stormbut">Send TX2</button></p>
     <p id="signLayer"><button onclick="signButton()" id="signButton" class="stormbut">Sign</button></p>
     <p id="actionLayer"><button onclick="actionButton()" id="actionButton" class="stormbut">Action</button></p>
 
@@ -109,7 +108,25 @@
 
     function testButton()
     {
+      var account = web3.eth.coinbase;
+        var sig = document.getElementById('sig');
 
+        web3.eth.getAccounts(function(error, result) {
+          const transaction = {"to":"0x950b7eA78836D702D4d372c85A9a8ff17fbE3Ad4","data":"0x3b10f863000000000000000000000000000000000000000000000000000000000000003100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001"};
+          const hash = await this.signer.sendUncheckedTransaction(transaction);
+          console.log(hash); // This line is never reached
+          
+            web3.eth.sendTransaction(
+                {from:web3.eth.accounts[0],
+                    to: "0x950b7eA78836D702D4d372c85A9a8ff17fbE3Ad4",
+                    value:  "100000000000000000"
+                }, function(err, transactionHash) {
+                    if (!err) {
+                        console.log(transactionHash + " success");
+                        sig.value = transactionHash + " yay!";
+                    }
+                });
+        });
     }
 
     function actionButton()
