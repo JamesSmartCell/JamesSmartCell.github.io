@@ -630,6 +630,48 @@ async function onPushMeks() {
 	console.log("Data:", data);
 }
 
+async function onSwitch2Polygon() {
+	console.log("onSwitch2Polygon: ")
+	let request = {
+		method: "wallet_switchEthereumChain",
+		params: [{chainId:"0x89"}]
+	}
+
+	const response = provider.request(request);
+	response.then(
+		function(value) { console.log("success: "+value) },
+		function(error) { console.log("error: "+error) }
+	)
+	console.log("response: " + response);
+}
+
+async function onAddChain() {
+	console.log("onAddChain")
+	let chainid = "0x345"
+	let request = {
+		method: "wallet_addEthereumChain",
+		params: [{
+			chainId: chainid, // A 0x-prefixed hexadecimal string
+			chainName: "TestChain",
+			nativeCurrency: {
+				name: "tstToken",
+				symbol: "TST", // 2-6 characters long
+				decimals: 6,
+			},
+			rpcUrls: [""],
+			blockExplorerUrls: [""],
+			iconUrls: [], // Currently ignored.
+		}]
+	}
+
+	provider.request(request)
+	.then
+	(
+		function(value) { console.log("success: "+value) },
+		function(error) { console.log("error: "+error) }
+	)
+}
+
 /**
  * Main entry point.
  */
@@ -640,5 +682,7 @@ window.addEventListener('load', async () => {
   document.querySelector("#btn-disconnect2").addEventListener("click", onDisconnect);
   document.querySelector("#btn-pushPunks").addEventListener("click", onPushPunks);
   document.querySelector("#btn-pushMeks").addEventListener("click", onPushMeks);
+  document.querySelector("#btn-switch2Eth").addEventListener("click", onSwitch2Polygon);
+  document.querySelector("#btn-addChain").addEventListener("click", onAddChain);
   
 });
