@@ -634,7 +634,7 @@ async function onSwitch2Polygon() {
 	console.log("onSwitch2Polygon: ")
 	let request = {
 		method: "wallet_switchEthereumChain",
-		params: [{chainId:"0x1001"}]
+		params: [{chainId:"0x3E9"}]
 	}
 
 	const response = provider.request(request);
