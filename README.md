@@ -8,6 +8,10 @@ Dependencies, like the Web3Modal library itself,
 are loaded over Unpkg CDN. The code is extensively
 commented and short.
 
+TODO:
+- signing tests
+- add more chains
+
 Originally sourced from:
 
 [Web3modal](https://github.com/web3modal/web3modal))
