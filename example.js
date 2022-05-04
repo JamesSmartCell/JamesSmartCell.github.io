@@ -893,6 +893,9 @@ function init() {
       options: {
         //Old, free AW Infura key; leaked many times - you will want to replace this with your own, but it might just work
         infuraId: "c7df4c29472d4d54a39f7aa78f146853",
+		rpc: {
+			4: "https://rinkeby-light.eth.linkpool.io",
+		  }
       }
     }
   };
