@@ -1151,7 +1151,7 @@ window.addEventListener('load', async () => {
   document.querySelector("#btn-disconnect2").addEventListener("click", onDisconnect);
   document.querySelector("#btn-pushPunks").addEventListener("click", onPushPunks);
   document.querySelector("#btn-pushMeks").addEventListener("click", onPushMeks);
-  document.querySelector("btn-pushSTLDoor").addEventListener("click", onPushSTLDoor);
+  document.querySelector("#btn-pushSTLDoor").addEventListener("click", onPushSTLDoor);
   document.querySelector("#btn-switch2Eth").addEventListener("click", onSwitch2Polygon);
   document.querySelector("#btn-switch2Aurora").addEventListener("click", onSwitch2Aurora);
   document.querySelector("#btn-addChain").addEventListener("click", onAddChain);
