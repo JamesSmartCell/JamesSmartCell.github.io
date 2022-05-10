@@ -1118,6 +1118,21 @@ async function onSwitch2Aurora() {
 	console.log("response: " + response);
 }
 
+async function onSwitch2ADA() {
+	console.log("onSwitch2ADA: ")
+	let request = {
+		method: "wallet_switchEthereumChain",
+		params: [{chainId:"0x30DA5"}]
+	}
+
+	const response = provider.request(request);
+	response.then(
+		function(value) { console.log("success: "+value) },
+		function(error) { console.log("error: "+error) }
+	)
+	console.log("response: " + response);
+}
+
 async function onAddChain() {
 	console.log("onAddChain")
 	let chainid = "0x345"
@@ -1156,8 +1171,9 @@ window.addEventListener('load', async () => {
   document.querySelector("#btn-pushPunks").addEventListener("click", onPushPunks);
   document.querySelector("#btn-pushMeks").addEventListener("click", onPushMeks);
   document.querySelector("#btn-pushSTLDoor").addEventListener("click", onPushSTLDoor);
-  document.querySelector("#btn-switch2Eth").addEventListener("click", onSwitch2Polygon);
+  document.querySelector("#btn-switch2Eth").addEventListener("click", onSwitch2Polygon); 
   document.querySelector("#btn-switch2Aurora").addEventListener("click", onSwitch2Aurora);
+  document.querySelector("#btn-switch2ADA").addEventListener("click", onSwitch2ADA);
   document.querySelector("#btn-addChain").addEventListener("click", onAddChain);
   
 });
