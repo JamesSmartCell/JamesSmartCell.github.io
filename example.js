@@ -931,6 +931,30 @@ async function fetchAccountData() {
   // Get list of accounts of the connected wallet
   const accounts = await web3.eth.getAccounts();
 
+  
+
+  //window.ethereum
+
+  let web3Provider = web3._provider;
+
+  if (web3Provider.isWalletConnect)
+  {
+	let walletMeta = web3Provider.walletMeta;
+	document.querySelector("#detected-wallet").textContent = walletMeta.name;
+  }
+  else if (web3Provider.isAlphaWallet)
+  {
+	document.querySelector("#detected-wallet").textContent = "Alpha Wallet";
+  }
+  else if (web3Provider.isTrust)
+  {
+	document.querySelector("#detected-wallet").textContent = "Trust Wallet";
+  }
+  else if (web3Provider.isMetaMask)
+  {
+	document.querySelector("#detected-wallet").textContent = "MetaMask";
+  }
+
   // MetaMask does not give you all accounts, only the selected account
   console.log("Got accounts", accounts);
   selectedAccount = accounts[0];
