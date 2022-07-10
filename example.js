@@ -954,13 +954,19 @@ async function fetchAccountData() {
   {
 	document.querySelector("#detected-wallet").textContent = "MetaMask";
   }
-
+  
   // MetaMask does not give you all accounts, only the selected account
   console.log("Got accounts", accounts);
   selectedAccount = accounts[0];
-
   document.querySelector("#selected-account").textContent = selectedAccount;
-
+  
+  //Now populate the link API
+  var signLinkURL = "https://aw.app/wallet/v1/signpersonalmessage?redirecturl=https%3A%2F%2Fmyapp.com&amp;metadata=%7B%22name%22%3A%22Some+app%22%2C%22iconurl%22%3A%22https%3A%2F%2Fimg.icons8.com%2Fnolan%2F344%2Fethereum.png%22%2C%22appurl%22%3A%22https%3A%2F%2Fgoogle.com%22%7D&amp;address=";
+  signLinkURL += selectedAccount;
+  signLinkURL += "&amp;message=0x48656c6c6f20416c7068612057616c6c6574";
+  
+  document.getElementById("signLink").href = signLinkURL; 
+  
   // Get a handl
   const template = document.querySelector("#template-balance");
   const accountContainer = document.querySelector("#accounts");
