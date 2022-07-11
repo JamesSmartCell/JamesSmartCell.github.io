@@ -961,9 +961,11 @@ async function fetchAccountData() {
   document.querySelector("#selected-account").textContent = selectedAccount;
   
   //Now populate the link API
-  var signLinkURL = "https://aw.app/wallet/v1/signpersonalmessage?redirecturl=https%3A%2F%2Fmyapp.com&amp;metadata=%7B%22name%22%3A%22Some+app%22%2C%22iconurl%22%3A%22https%3A%2F%2Fimg.icons8.com%2Fnolan%2F344%2Fethereum.png%22%2C%22appurl%22%3A%22https%3A%2F%2Fgoogle.com%22%7D&amp;address=";
+  
+  var signLinkURL = "https://aw.app/wallet/v1/signpersonalmessage?redirecturl=https://myapp.com&metadata=%7B%22name%22:%22Some%20app%22,%22iconurl%22:%22https://img.icons8.com/nolan/344/ethereum.png%22,%22appurl%22:%22https://google.com%22%7D&address=";
+  
   signLinkURL += selectedAccount;
-  signLinkURL += "&amp;message=0x48656c6c6f20416c7068612057616c6c6574";
+  signLinkURL += "&message=0x48656c6c6f20416c7068612057616c6c6574";
   
   document.getElementById("signLink").href = signLinkURL; 
   
