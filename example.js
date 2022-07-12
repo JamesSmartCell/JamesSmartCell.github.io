@@ -964,6 +964,9 @@ async function fetchAccountData() {
   
   var signLinkURL = "https://aw.app/wallet/v1/signpersonalmessage?redirecturl=https://jamessmartcell.github.io/collectsig&metadata=%7B%22name%22:%22Some%20app%22,%22iconurl%22:%22https://img.icons8.com/nolan/344/ethereum.png%22,%22appurl%22:%22https://google.com%22%7D&address=";
   
+  //var signLinkURL = "https://aw.app/wallet/v1/signpersonalmessage?redirecturl=http://192.168.1.115/collectsig&metadata=%7B%22name%22:%22Some%20app%22,%22iconurl%22:%22https://img.icons8.com/nolan/344/ethereum.png%22,%22appurl%22:%22https://google.com%22%7D&address=";
+
+
   signLinkURL += selectedAccount;
   signLinkURL += "&message=0x48656c6c6f20416c7068612057616c6c6574";
   
