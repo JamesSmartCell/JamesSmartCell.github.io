@@ -25,7 +25,7 @@ window.addEventListener('load', async () => {
   
 });
 
-async function init() {
+function init() {
 
   console.log("Initializing example");
   console.log("WalletConnectProvider is", WalletConnectProvider);
@@ -117,12 +117,12 @@ function mainFunction() {
   console.log("Web3 instance is", web3);
 
   // Get connected chain id from Ethereum node
-  const chainId = await web3.eth.getChainId();
+  const chainId = web3.eth.getChainId();
   // Load chain information over an HTTP API
   const chainData = evmChains.getChain(chainId);
 
   // Get list of accounts of the connected wallet
-  const accounts = await web3.eth.getAccounts();
+  const accounts = web3.eth.getAccounts();
 
   
   // MetaMask does not give you all accounts, only the selected account
