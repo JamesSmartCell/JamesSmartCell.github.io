@@ -22,6 +22,7 @@ let selectedAccount;
 
 window.addEventListener('load', async () => {
   init();
+  document.querySelector("#btn-check").addEventListener("click", onCheck);
   
 });
 
@@ -70,22 +71,43 @@ function init() {
   });
 
   console.log("Web3Modal instance is", web3Modal);
-  
+}
+
+/**
+ * Connect wallet button pressed.
+ */
+async function onCheck() {
+
+  console.log("Opening a dialog", web3Modal);
   try {
-    provider = web3Modal.connect();
+    provider = await web3Modal.connect();
   } catch(e) {
     console.log("Could not get a wallet connection", e);
     return;
   }
-  
-  mainFunction();
-}
 
+  // Subscribe to accounts change
+  /*provider.on("accountsChanged", (accounts) => {
+    fetchAccountData();
+  });
+
+  // Subscribe to chainId change
+  provider.on("chainChanged", (chainId) => {
+    fetchAccountData();
+  });
+
+  // Subscribe to networkId change
+  provider.on("networkChanged", (networkId) => {
+    fetchAccountData();
+  });*/
+
+  await mainFunction();
+}
 
 /**
  * Kick in the UI action after Web3modal dialog has chosen a provider
  */
-function mainFunction() {
+async function mainFunction() {
 	
   const bridge = "https://bridge.walletconnect.org/";
 
@@ -117,12 +139,12 @@ function mainFunction() {
   console.log("Web3 instance is", web3);
 
   // Get connected chain id from Ethereum node
-  const chainId = web3.eth.getChainId();
+  const chainId = await web3.eth.getChainId();
   // Load chain information over an HTTP API
   const chainData = evmChains.getChain(chainId);
 
   // Get list of accounts of the connected wallet
-  const accounts = web3.eth.getAccounts();
+  const accounts = await web3.eth.getAccounts();
 
   
   // MetaMask does not give you all accounts, only the selected account
