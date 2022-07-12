@@ -940,7 +940,14 @@ async function fetchAccountData() {
   if (web3Provider.isWalletConnect)
   {
 	let walletMeta = web3Provider.walletMeta;
-	document.querySelector("#detected-wallet").textContent = walletMeta.name;
+	if (walletMeta != null)
+	{
+		document.querySelector("#detected-wallet").textContent = walletMeta.name;
+	}
+	else
+	{
+		document.querySelector("#detected-wallet").textContent = "Unknown WalletConnect provider";
+	}
   }
   else if (web3Provider.isAlphaWallet)
   {
