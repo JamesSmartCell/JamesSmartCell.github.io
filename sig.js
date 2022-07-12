@@ -78,14 +78,14 @@ function init() {
     return;
   }
   
-  await mainFunction();
+  mainFunction();
 }
 
 
 /**
  * Kick in the UI action after Web3modal dialog has chosen a provider
  */
-async function mainFunction() {
+function mainFunction() {
 	
   const bridge = "https://bridge.walletconnect.org/";
 
