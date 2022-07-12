@@ -72,7 +72,7 @@ function init() {
   console.log("Web3Modal instance is", web3Modal);
   
   try {
-    provider = await web3Modal.connect();
+    provider = web3Modal.connect();
   } catch(e) {
     console.log("Could not get a wallet connection", e);
     return;
