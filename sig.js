@@ -25,7 +25,7 @@ window.addEventListener('load', async () => {
   
 });
 
-function init() {
+async function init() {
 
   console.log("Initializing example");
   console.log("WalletConnectProvider is", WalletConnectProvider);
