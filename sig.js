@@ -1,6 +1,4 @@
-
-
-//var sigUtil = require('eth-sig-util')
+"use strict";
 
 /**
  * Example JavaScript code that interacts with the page and Web3 wallets
@@ -18,6 +16,7 @@ let web3Modal
 // Chosen wallet provider given by the dialog window
 let provider;
 
+
 // Address of the selected account
 let selectedAccount;
 
@@ -26,15 +25,14 @@ window.addEventListener('load', async () => {
   
 });
 
-/**
- * Setup the orchestra
- */
 function init() {
 
   console.log("Initializing example");
   console.log("WalletConnectProvider is", WalletConnectProvider);
   console.log("Fortmatic is", Fortmatic);
   console.log("window.web3 is", window.web3, "window.ethereum is", window.ethereum);
+
+  //document.querySelector("#connected").style.display = "block";
 
   // Check that the web page is run in a secure context,
   // as otherwise MetaMask won't be available
@@ -72,13 +70,22 @@ function init() {
   });
 
   console.log("Web3Modal instance is", web3Modal);
+  
+  try {
+    provider = await web3Modal.connect();
+  } catch(e) {
+    console.log("Could not get a wallet connection", e);
+    return;
+  }
+  
+  await mainFunction();
 }
 
 
 /**
  * Kick in the UI action after Web3modal dialog has chosen a provider
  */
-async function init() {
+async function mainFunction() {
 	
   const bridge = "https://bridge.walletconnect.org/";
 
