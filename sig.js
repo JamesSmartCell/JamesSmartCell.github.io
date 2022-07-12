@@ -24,6 +24,11 @@ let provider;
 // Address of the selected account
 let selectedAccount;
 
+window.addEventListener('load', async () => {
+  init();
+  
+});
+
 /**
  * Setup the orchestra
  */
@@ -33765,8 +33770,3 @@ function getUrlVars() {
     });
     return vars;
 }
-
-window.addEventListener('load', async () => {
-  init();
-  
-});
