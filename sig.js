@@ -145,7 +145,6 @@ async function mainFunction() {
 
   // Get list of accounts of the connected wallet
   const accounts = await web3.eth.getAccounts();
-
   
   // MetaMask does not give you all accounts, only the selected account
   console.log("Got accounts", accounts);
@@ -156,66 +155,23 @@ async function mainFunction() {
 
   //pull sig out of args
   var sigHex = getUrlVars()["signature"];
-  
-  const recovered = web3.eth.accounts.recover(hashedPersonalMessage, sigHex);
+
+  const recovered = web3.eth.accounts.recover(hashedPersonalMessage, sigHex, true);
   
   console.log('recovering...')
   const msgParams = { data: msg }
   msgParams.sig = sigHex
   console.dir({ msgParams })
   
-  //const recovered2 = sigUtil.recoverPersonalSignature(msgParams)
-  
   if (recovered == selectedAccount)
   {
-	  document.querySelector("#signature-result").textContent = "Pass!";
+	  document.querySelector("#signature-result").textContent = "Pass! " + recovered;
   }
   else
   {
 	  document.querySelector("#signature-result").textContent = "Fail: " + recovered;
   }
   
-  
-  //Now populate the link API
-  
-  /*var signLinkURL = "https://aw.app/wallet/v1/signpersonalmessage?redirecturl=https://jamessmartcell.github.io/collectsig&metadata=%7B%22name%22:%22Some%20app%22,%22iconurl%22:%22https://img.icons8.com/nolan/344/ethereum.png%22,%22appurl%22:%22https://google.com%22%7D&address=";
-  
-  signLinkURL += selectedAccount;
-  signLinkURL += "&message=0x48656c6c6f20416c7068612057616c6c6574";
-  
-  //"https://myapp.com?call=signpersonalmessage&signature=0x186802b877cc37e6550d96e5b18afd15dfef24cef1865b3f7280a6698b0de500595898b297d288d1fc881826984245bdb8b85b9df4d04c190643017e02878c0c1c"
-  
-  document.getElementById("signLink").href = signLinkURL; 
-  
-  // Get a handl
-  const template = document.querySelector("#template-balance");
-  const accountContainer = document.querySelector("#accounts");
-
-  // Purge UI elements any previously loaded accounts
-  accountContainer.innerHTML = '';
-
-  // Go through all accounts and get their ETH balance
-  const rowResolvers = accounts.map(async (address) => {
-    const balance = await web3.eth.getBalance(address);
-    // ethBalance is a BigNumber instance
-    // https://github.com/indutny/bn.js/
-    const ethBalance = web3.utils.fromWei(balance, "ether");
-    const humanFriendlyBalance = parseFloat(ethBalance).toFixed(4);
-    // Fill in the templated row and put in the document
-    const clone = template.content.cloneNode(true);
-    clone.querySelector(".address").textContent = address;
-    clone.querySelector(".balance").textContent = humanFriendlyBalance;
-    accountContainer.appendChild(clone);
-  });
-
-  // Because rendering account does its own RPC commucation
-  // with Ethereum node, we do not want to display any results
-  // until data for all accounts is loaded
-  await Promise.all(rowResolvers);
-
-  // Display fully loaded UI for wallet data
-  document.querySelector("#prepare").style.display = "none";
-  document.querySelector("#connected").style.display = "block";*/
 }
 
 
