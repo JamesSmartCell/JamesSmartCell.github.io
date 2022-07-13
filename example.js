@@ -922,6 +922,7 @@ async function fetchAccountData() {
 
   console.log("Web3 instance is", web3);
 
+
   // Get connected chain id from Ethereum node
   const chainId = await web3.eth.getChainId();
   // Load chain information over an HTTP API
@@ -969,7 +970,7 @@ async function fetchAccountData() {
   
   //Now populate the link API
   
-  var signLinkURL = "https://aw.app/wallet/v1/signpersonalmessage?redirecturl=https://jamessmartcell.github.io/collectsig&metadata=%7B%22name%22:%22Some%20app%22,%22iconurl%22:%22https://img.icons8.com/nolan/344/ethereum.png%22,%22appurl%22:%22https://google.com%22%7D&address=";
+  var signLinkURL = "https://aw.app/wallet/v1/signpersonalmessage?redirecturl=https://jamessmartcell.github.io/collectsig%3F &metadata=%7B%22name%22:%22Some%20app%22,%22iconurl%22:%22https://img.icons8.com/nolan/344/ethereum.png%22,%22appurl%22:%22https://google.com%22%7D&address=";
   
   //var signLinkURL = "https://aw.app/wallet/v1/signpersonalmessage?redirecturl=http://192.168.1.115/collectsig&metadata=%7B%22name%22:%22Some%20app%22,%22iconurl%22:%22https://img.icons8.com/nolan/344/ethereum.png%22,%22appurl%22:%22https://google.com%22%7D&address=";
 
@@ -977,7 +978,7 @@ async function fetchAccountData() {
   signLinkURL += selectedAccount;
   signLinkURL += "&message=0x48656c6c6f20416c7068612057616c6c6574";
   
-  //"https://myapp.com?call=signpersonalmessage&signature=0x186802b877cc37e6550d96e5b18afd15dfef24cef1865b3f7280a6698b0de500595898b297d288d1fc881826984245bdb8b85b9df4d04c190643017e02878c0c1c"
+  //"http://jamessmartcell.github.io/collectsig?addr=0x48656c6c6f20416c7068612057616c6c6574?call=signpersonalmessage&signature=0x186802b877cc37e6550d96e5b18afd15dfef24cef1865b3f7280a6698b0de500595898b297d288d1fc881826984245bdb8b85b9df4d04c190643017e02878c0c1c"
   
   document.getElementById("signLink").href = signLinkURL; 
   
@@ -1078,16 +1079,17 @@ async function onDisconnect() {
   console.log("Killing the wallet connection", provider);
 
   // TODO: Which providers have close method?
-  if(provider.close) {
+  if(provider != null && provider.close) {
     await provider.close();
 
     // If the cached provider is not cleared,
     // WalletConnect will default to the existing session
     // and does not allow to re-scan the QR code with a new wallet.
     // Depending on your use case you may want or want not his behavir.
-    await web3Modal.clearCachedProvider();
     provider = null;
   }
+  
+  await web3Modal.clearCachedProvider();
 
   selectedAccount = null;
 
