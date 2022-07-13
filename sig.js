@@ -157,11 +157,6 @@ async function mainFunction() {
   //pull sig out of args
   var sigHex = getUrlVars()["signature"];
   
-  console.log('recovering...')
-  const msgParams = { data: hashedPersonalMessage }
-  msgParams.sig = sigHex
-  console.dir({ msgParams })
-  
   const recovered = web3.eth.accounts.recover(hashedPersonalMessage, sigHex);
   
   console.log('recovering...')
