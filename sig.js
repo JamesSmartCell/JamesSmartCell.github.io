@@ -151,8 +151,8 @@ async function mainFunction() {
   console.log("Got accounts", accounts);
   selectedAccount = accounts[0];
   
-  const msg = 0x48656c6c6f20416c7068612057616c6c6574;
-  const hashedPersonalMessage = 0x582630440bdcc1fc11820b947b7f3dd8e798b739150e1995eaaf230e86bb1009; //hash of the signPersonalMessage
+  const msg = "0x48656c6c6f20416c7068612057616c6c6574";
+  const hashedPersonalMessage = "0x582630440bdcc1fc11820b947b7f3dd8e798b739150e1995eaaf230e86bb1009"; //hash of the signPersonalMessage
 
   //pull sig out of args
   var sigHex = getUrlVars()["signature"];
