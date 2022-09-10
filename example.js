@@ -16,6 +16,7 @@ let web3Modal
 // Chosen wallet provider given by the dialog window
 let provider;
 
+var ethers = require('ethers');
 
 // Address of the selected account
 let selectedAccount;
