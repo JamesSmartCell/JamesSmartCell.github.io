@@ -103,6 +103,7 @@
               <thead>
                 <th>Address</th>
                 <th>ETH balance</th>
+                <th>Next Deployed Contract</th>
               </thead>
 
               <tbody id="accounts">
@@ -127,6 +128,7 @@
         <tr>
           <th class="address"></th>
           <td class="balance"></td>
+          <td class="contractAddr"></td>
         </tr>
       </template>
     </div>
@@ -147,7 +149,10 @@
     <script type="text/javascript" src="https://unpkg.com/evm-chains@0.2.0/dist/umd/index.min.js"></script>
     <script type="text/javascript" src="https://unpkg.com/@walletconnect/web3-provider@1.2.1/dist/umd/index.min.js"></script>
     <script type="text/javascript" src="https://unpkg.com/fortmatic@2.0.6/dist/fortmatic.js"></script>
-    <script src="https://cdn.ethers.io/lib/ethers-5.0.umd.min.js" type="application/javascript"></script>
+    <!--<script src="https://cdn.ethers.io/lib/ethers-5.0.umd.min.js" type="application/javascript"></script>-->
+    <script type="module">
+      import { ethers } from "https://cdn.ethers.io/lib/ethers-5.2.esm.min.js";
+    </script>
 
     <!-- This is our example code -->
     <script type="text/javascript" src="./example.js"></script>
