@@ -1481,7 +1481,7 @@ function init() {
 	};
 
 	web3Modal = new Web3Modal({
-		network: "rinkeby", // optional
+		network: "mumbai", // optional
 		cacheProvider: false, // optional
 		disableInjectedProvider: false,
 		providerOptions: providerOptions // required
@@ -1761,7 +1761,6 @@ window.addEventListener('load', async () => {
 	document.querySelector("#btn-connect").addEventListener("click", onConnect);
 	document.querySelector("#btn-disconnect").addEventListener("click", onDisconnect);
 	document.querySelector("#btn-disconnect2").addEventListener("click", onDisconnect);
-	document.querySelector("#btn-switch2Eth").addEventListener("click", onSwitch2Polygon);
 	document.querySelector("#btn-switch2Aurora").addEventListener("click", onSwitch2Aurora);
 	document.querySelector("#btn-switch2ADA").addEventListener("click", onSwitch2ADA);
 	document.querySelector("#btn-addChain").addEventListener("click", onAddChain);
