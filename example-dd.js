@@ -1481,7 +1481,7 @@ function init() {
 	};
 
 	web3Modal = new Web3Modal({
-		network: "Matic Mumbai", // optional
+		network: "testnet", // optional
 		cacheProvider: false, // optional
 		disableInjectedProvider: false,
 		providerOptions: providerOptions // required
