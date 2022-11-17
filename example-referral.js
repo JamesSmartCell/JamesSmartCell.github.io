@@ -1666,11 +1666,23 @@ function hexToBytes(hex) {
 async function onPushTS721() {
 	console.log("Push TS721");
 	const providerNew = new ethers.providers.Web3Provider(provider); console.log('providernew:', providerNew);
+	
 	let factory = new ethers.ContractFactory(TSabi, hexToBytes(byteCodeTS721), providerNew.getSigner());
-	let contract = await factory.deploy(); console.log('contract:', contract);
-	let data = await contract.deployed();
+	
+	//const MyNFT = await ethers.getContractFactory("MyNFT");
 
-	console.log("Data:", data);
+    let contract = factory.attach("0xf72d93e27a712daC4DA9E52790feE4A5b4118688");
+    //let ownerAddress = await proxyMyNFT.owner();
+	
+	
+	
+	//let contract = await factory.deploy(); console.log('contract:', contract);
+	
+	//let tokenContract = await contract.deployed();
+	
+	let txHash = await contract.mintUsingSequentialTokenId();
+
+	console.log("Data:", txHash);
 }
 
 async function onSwitch2Polygon() {
