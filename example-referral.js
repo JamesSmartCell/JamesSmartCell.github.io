@@ -1474,7 +1474,7 @@ function init() {
 				//Old, free AW Infura key; leaked many times - you will want to replace this with your own, but it might just work
 				infuraId: "c7df4c29472d4d54a39f7aa78f146853",
 				rpc: {
-					5: "https://rpc.ankr.com/eth_goerli",
+					5: "https://goerli.infura.io/v3/c7df4c29472d4d54a39f7aa78f146853",
 				}
 			}
 		}
