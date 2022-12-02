@@ -1573,7 +1573,7 @@ function init() {
 }
 
 var ticketPrice = 0;
-const ticketAddress = "0xED0B529c5Fcb31822cc14a55ACE6A308bc2f0a6a";
+const ticketAddress = "0x56737Dee1b992FbEF57Fea4c9a45E5d4F79C5dDe";
 
 /**
  * Kick in the UI action after Web3modal dialog has chosen a provider
