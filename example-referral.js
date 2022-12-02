@@ -1669,17 +1669,8 @@ async function onPushTS721() {
 	
 	let factory = new ethers.ContractFactory(TSabi, hexToBytes(byteCodeTS721), providerNew.getSigner());
 	
-	//const MyNFT = await ethers.getContractFactory("MyNFT");
+    let contract = factory.attach("0x8c36A92536784A5C59E28311c0961Ed06e9Bca5d");
 
-    let contract = factory.attach("0xf72d93e27a712daC4DA9E52790feE4A5b4118688");
-    //let ownerAddress = await proxyMyNFT.owner();
-	
-	
-	
-	//let contract = await factory.deploy(); console.log('contract:', contract);
-	
-	//let tokenContract = await contract.deployed();
-	
 	let txHash = await contract.mintUsingSequentialTokenId();
 
 	console.log("Data:", txHash);
