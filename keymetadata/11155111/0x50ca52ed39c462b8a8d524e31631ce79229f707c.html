@@ -18,6 +18,11 @@
       var tokenIdMasked = (tokenId & BigInt("0xFFFFFFFFF"));
       var attestationUID = vars["uid"];
       var validityText = "Key is currently valid";
+      var date = new Date(vars["timestamp"] * 1000);
+      let attnTimestampText = date.toUTCString();
+
+      var expirationTime = vars["expirationTime"];
+      var revocationTime = vars["revocationTime"];
 
       var rootText = "Derivative Key";
       var keyGraphic = "ipfs://QmWrnQ2nXw59nX2WjExEKaiy2FLesiLkj5i5fZrtbf1sDX";
@@ -31,7 +36,24 @@
         validityText = "Key has been revoked";
       }
 
-      var obj = { "name": `${name}`, "description": `${rootText}, Status: ${validityText}`, "image_url": `${keyGraphic}`, "external_url": "https://github.com/TokenScript", "attributes": [{"key": "Attestation UID", "trait_type": "Attestation UID", "value": `${attestationUID}`}, {"key": "Key #ID", "trait_type": "Key #ID", "value": `${tokenIdMasked}`}] };
+      var expiresText = "Never";
+      var revocationText = "";
+
+      if (expirationTime > 0) {
+        date = new Date(expirationTime * 1000);
+        expiresText = date.toUTCString();
+      }
+
+      var obj = { "name": `${name}`, "description": `${rootText}, Status: ${validityText}`, "image_url": `${keyGraphic}`, "external_url": "https://github.com/TokenScript", 
+        "attributes": [{"key": "Attestation UID", "trait_type": "Attestation UID", "value": `${attestationUID}`}, 
+        {"key": "Key #ID", "trait_type": "Key #ID", "value": `${tokenIdMasked}`},
+        {"key": "Issue Time", "trait_type": "Issue Time", "value": `${attnTimestampText}`},
+        {"key": "Expiry Time", "trait_type": "Expiry Time", "value": `${expiresText}`}] };
+      if (revocationTime > 0) {
+        date = new Date(revocationTime * 1000);
+        revocationText = date.toUTCString();
+        obj["attributes"].push({"key": "Revocation Time", "trait_type": "Revocation Time", "value": `${revocationText}`});
+      }
       var str = JSON.stringify(obj, undefined, 4);
       var output = document.getElementById("text-output");
       output.innerHTML = str;
