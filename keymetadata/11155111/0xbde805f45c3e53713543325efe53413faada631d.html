@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Token Metadata</title>
+</head>
+
+<body>
+  <div id="text-output"></div>
+  <script>
+
+    // Define a function that takes the text from the input element and displays it in the output element
+    window.onload = function displayJSON() {
+      var vars = getUrlVars();
+      var name = vars["name"];
+      var tokenIdStr = vars["tokenId"];
+      var tokenId = BigInt(`${tokenIdStr}`);
+      var tokenIdMasked = (tokenId & BigInt("0xFFFFFFFFF"));
+      var attestationUID = vars["uid"];
+      var validityText = "Key is currently valid";
+      var date = new Date(vars["timestamp"] * 1000);
+      let attnTimestampText = date.toUTCString();
+
+      var expirationTime = vars["expirationTime"];
+      var revocationTime = vars["revocationTime"];
+
+      var rootText = "Derivative Key";
+      var keyGraphic = "ipfs://QmWrnQ2nXw59nX2WjExEKaiy2FLesiLkj5i5fZrtbf1sDX";
+      if (tokenIdMasked == 1) {
+        rootText = "Root Key";
+        keyGraphic = "ipfs://QmfN7BaBVCauJd1VCiBF1YZFA7oouNWv6XXV9fUn4t52pz";
+      }
+
+      if (vars["isValid"] == "false") {
+        keyGraphic = "ipfs://Qmcah63ARey2KMEQuk6mmjhJPfcL5NWkGdhgRC8XMzKCJ4";  
+        validityText = "Key has been revoked";
+      }
+
+      var expiresText = "Never";
+      var revocationText = "";
+
+      if (expirationTime > 0) {
+        date = new Date(expirationTime * 1000);
+        expiresText = date.toUTCString();
+      }
+
+      var obj = { "name": `${name}`, "description": `${rootText}, Status: ${validityText}`, "image_url": `${keyGraphic}`, "external_url": "https://github.com/TokenScript", 
+        "attributes": [{"key": "Attestation UID", "trait_type": "Attestation UID", "value": `${attestationUID}`}, 
+        {"key": "Key #ID", "trait_type": "Key #ID", "value": `${tokenIdMasked}`},
+        {"key": "Issue Time", "trait_type": "Issue Time", "value": `${attnTimestampText}`},
+        {"key": "Expiry Time", "trait_type": "Expiry Time", "value": `${expiresText}`}] };
+      if (revocationTime > 0) {
+        date = new Date(revocationTime * 1000);
+        revocationText = date.toUTCString();
+        obj["attributes"].push({"key": "Revocation Time", "trait_type": "Revocation Time", "value": `${revocationText}`});
+      }
+      var str = JSON.stringify(obj, undefined, 4);
+      var output = document.getElementById("text-output");
+      output.innerHTML = str;
+    }
+
+    function getUrlVars() {
+      var vars = [], hash;
+      var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+
+      for (var i = 0; i < hashes.length; i++) {
+        hash = hashes[i].split('=');
+        vars.push(hash[0]);
+        vars[hash[0]] = hash[1];
+      }
+
+      return vars;
+    }
+
+  </script>
+</body>
+
+</html>
