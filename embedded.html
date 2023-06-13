@@ -74,7 +74,6 @@
       allowFullScreen="true"
       src="https://www.jigsawexplorer.com/online-jigsaw-puzzle-player.html?frm=1&url=aHR0cHM6Ly9uZXZlcnNpdHN0aWxsLmNvbS9hc3NldHMvaW1hZ2VzL3N0bC9TVExfU3RpbGxzX1RTQnJhbmRfVG9wVmlldy5qcGc~&cred=TmV2ZXIgU2l0IFN0aWxs&credu=aHR0cHM6Ly9uZXZlcnNpdHN0aWxsLmNvbS9wcm9qZWN0cy9zbWFydC10b2tlbi1sYWJz&nop=20"
       title="Jigsaw Puzzle">Solve to receive attestation</iframe>
-      <button onclick="displayTokenPopup()" class="button">Claim Reward</button>
     <div class="footer">
       <p>An STL Production</p>
     </div>
@@ -87,9 +86,9 @@
         window.addEventListener('message', function (event) {
             var completionInfo = JSON.parse(event.data);
 
-            alert('pid=' + completionInfo.puzzleId + 
-                '; nop=' + completionInfo.numberOfPieces + 
-                '; time=' + completionInfo.elapsedTime + ' (secs)');
+            var message = "" + completionInfo.numberOfPieces + " Tokens Awarded";
+
+            alert(message);
         });
        
         puzzleWindow.postMessage('puzzle-completion-event-request',
