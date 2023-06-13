@@ -1,0 +1,127 @@
+<html>
+<head>
+  <title>Claim Reward Tokens</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .header {
+      background-color: #333;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+    .content {
+      padding: 40px;
+    }
+    .reward {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .reward img {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+    }
+    .reward p {
+      font-size: 24px;
+      font-weight: bold;
+      margin-left: 20px;
+    }
+    .button {
+      display: block;
+      width: 200px;
+      height: 50px;
+      margin: 40px auto;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+    }
+    .button:hover {
+      background-color: #3E8E41;
+    }
+    .footer {
+      background-color: #333;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>Gamification Experiment</h1>
+      <p>Congratulations! You can participate in a blockchain evolution experience experiment.</p>
+    </div>
+    <div class="content">
+      <div class="reward">
+        <img src="./STL_Stills_UserFirst_White.jpg" alt="Avatar">
+        <p>Experimental Token Service Layer</p>
+      </div>
+    </div>
+    <iframe id="test-puzzle" onload="window.sendRequest();"
+      style="width: 100%; height: 600px; max-height: 90vh; border-style: solid; border-width: 2px; border-color: #888"
+      allowFullScreen="true"
+      src="https://www.jigsawexplorer.com/online-jigsaw-puzzle-player.html?frm=1&url=aHR0cHM6Ly9uZXZlcnNpdHN0aWxsLmNvbS9hc3NldHMvaW1hZ2VzL3N0bC9TVExfU3RpbGxzX1RTQnJhbmRfVG9wVmlldy5qcGc~&cred=TmV2ZXIgU2l0IFN0aWxs&credu=aHR0cHM6Ly9uZXZlcnNpdHN0aWxsLmNvbS9wcm9qZWN0cy9zbWFydC10b2tlbi1sYWJz&nop=20"
+      title="Jigsaw Puzzle">Solve to receive attestation</iframe>
+      <button onclick="displayTokenPopup()" class="button">Claim Reward</button>
+    <div class="footer">
+      <p>An STL Production</p>
+    </div>
+  </div>
+  <script>
+
+    window.sendRequest = function () {
+        var puzzleWindow = document.getElementById('test-puzzle').contentWindow;
+
+        window.addEventListener('message', function (event) {
+            var completionInfo = JSON.parse(event.data);
+
+            alert('pid=' + completionInfo.puzzleId + 
+                '; nop=' + completionInfo.numberOfPieces + 
+                '; time=' + completionInfo.elapsedTime + ' (secs)');
+        });
+       
+        puzzleWindow.postMessage('puzzle-completion-event-request',
+            'https://www.jigsawexplorer.com/');
+    };
+
+    function displayTokenPopup() {
+      window.alert("Tokens Awarded");
+    }
+
+    
+    //<p>© 2023 by STL. All rights reserved.</p>
+
+    var intervalId;
+
+    window.onload = function () {
+      //run timer
+      intervalId = setInterval(function () {
+        var stuff = window.frames[0];
+        var puzzIFrame = document.getElementById("puzzleIFrame");
+        const inner = puzzIFrame.contentWindow || puzzIFrame.contentDocument;
+        //var innerDoc = puzzIFrame.document;
+        var elementToScan = inner.getElementById("jigex-toast-pnl");
+
+        if (elementToScan != null && elementToScan.style.display != "none") {
+          //its visible
+          console.log("Allocate Tokens!");
+        }
+      }, 10000)
+    }
+
+  </script>
+</body>
+
+</html>
